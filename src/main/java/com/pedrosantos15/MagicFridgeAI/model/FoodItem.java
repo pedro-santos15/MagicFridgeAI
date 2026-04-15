@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "food_item")
+@Table(name = "tb_food_item")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,15 +19,15 @@ public class FoodItem {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "nome")
-    private String nome;
+    @Column(name = "name")
+    private String name;
 
-    @Column(name = "categoria")
-    private String categoria;
+    @Column(name = "category")
+    private String category;
 
-    @Column(name = "quantidade")
-    private Integer quantidade;
+    @Column(name = "quantity")
+    private Integer quantity;
 
-    @Column(name = "data_validade")
-    private LocalDate dataDeValidade;
+    @Column(name = "expiration_date")
+    private LocalDate expirationDate;
 }
