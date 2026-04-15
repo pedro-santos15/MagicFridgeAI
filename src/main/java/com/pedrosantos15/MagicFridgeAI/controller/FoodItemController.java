@@ -19,7 +19,7 @@ public class FoodItemController {
     }
 
     //POST (Create)
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<FoodItem> create(@RequestBody FoodItem foodItem) {
         FoodItem savedItem = service.save(foodItem);
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -39,20 +39,19 @@ public class FoodItemController {
         }
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<FoodItem>> listAllItems() {
         return ResponseEntity.ok(service.listAll());
     }
 
     //UPDATE
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<FoodItem> updateItem(@PathVariable Long id, @RequestBody FoodItem foodItem) {
         FoodItem updatedItem = service.updateItem(id, foodItem);
 
         if (updatedItem != null) {
-            return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(updatedItem);
+            return ResponseEntity.ok(updatedItem);
         }
 
         return ResponseEntity.notFound()
@@ -61,14 +60,14 @@ public class FoodItemController {
 
     //DELETE
 
-    @DeleteMapping("/delete/{id}")
-
-    public ResponseEntity<?> deleteItem(@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteItem(@PathVariable Long id) {
         FoodItem foodItem = service.findById(id);
 
         if (foodItem != null){
             service.deleteItem(id);
-            return ResponseEntity.ok("Item successfully deleted");
+            return ResponseEntity.noContent()
+                    .build();
         }
 
         return ResponseEntity.notFound()
