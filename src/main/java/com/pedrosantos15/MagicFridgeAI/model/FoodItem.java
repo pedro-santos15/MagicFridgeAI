@@ -1,5 +1,6 @@
 package com.pedrosantos15.MagicFridgeAI.model;
 
+import com.pedrosantos15.MagicFridgeAI.enums.CategoryEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +9,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "tb_food_item")
+@Table(name = "food_item")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,7 +24,8 @@ public class FoodItem {
     private String name;
 
     @Column(name = "category")
-    private String category;
+    @Enumerated(EnumType.STRING)
+    private CategoryEnum category;
 
     @Column(name = "quantity")
     private Integer quantity;
